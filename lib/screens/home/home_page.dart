@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _toiletNameController = TextEditingController();
+  final _toiletPointController = TextEditingController();
+  final _toiletDistanceController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Expanded(
                       child: TextField(
+                        controller: _toiletPointController,
                         decoration: InputDecoration(
                           hintText: 'ให้คะแนน',
                           border: OutlineInputBorder(
@@ -68,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: TextField(
+                        controller: _toiletDistanceController,
                         decoration: InputDecoration(
                           hintText: 'ระยะทาง',
                           border: OutlineInputBorder(
@@ -86,10 +90,14 @@ class _HomePageState extends State<HomePage> {
                   child: ElevatedButton(
                     onPressed: () {
                       var toiletName = _toiletNameController.text;
+                      var toiletPoint = _toiletPointController.text;
+                      var toiletDistance = _toiletDistanceController.text;
+                      var Point = double.parse(toiletPoint);
+                      var Distance = double.parse(toiletDistance);
                       var toilet = Toilet(
                         name: toiletName,
-                        point: 5.0, // todo: homework
-                        distance: 100.0, // todo: homework
+                        point: Point,
+                        distance: Distance,
                       );
 
                       setState(() {
@@ -100,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: Text('ADD'),
                   ),
-                )
+                ),
               ],
             ),
           ),
